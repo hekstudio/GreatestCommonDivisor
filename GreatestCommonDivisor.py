@@ -14,6 +14,36 @@ def findFactors(num,resultList):
     else:
         resultList.append(num)      # Append last factor
 
+def checkFactors(num,factorList):
+    tempList = list()
+    for f in factorList:
+        if (num % f == 0):
+            tempList.append(f)
+    return tempList
+
+def product(arr):
+    temp = 1
+    for i in arr:
+        temp = temp * i
+    return temp
+
+def GreatestCommonDivisor(num,arr):
+    # Assume arr is sorted in an ascending order
+    # 1st element is the smallest
+    tempFactorList = list()
+    findFactors(arr[0],tempFactorList) # Factorize the 1st element
+    for i in range(1,num):
+        # Check any factor is present in the rest of the elements
+        tempFactorList = checkFactors(arr[i],tempFactorList)
+        if not tempFactorList:
+            return 1
+    return product(tempFactorList)
+
 testList = list()
-findFactors(10000000000,testList)
+findFactors(15,testList)
 print (testList)
+testList = checkFactors(7,testList)
+print (testList)
+testArr = [21,12,36,48,66]
+num = 5
+print (GreatestCommonDivisor(num,testArr))
