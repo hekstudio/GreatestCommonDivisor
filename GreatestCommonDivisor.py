@@ -13,22 +13,34 @@ def findFactors(num,resultList):
         findFactors(num,resultList) # Continue the process until no more factor is found
     else:
         resultList.append(num)      # Append last factor
-
+# ======================================
+#  Function: Cell a number is divisible
+#            by element in factorList
+# ======================================
 def checkFactors(num,factorList):
     tempList = list()
     for f in factorList:
         if (num % f == 0):
             tempList.append(f)
     return tempList
-
+# ======================================
+#  Function: Calculate product
+# ======================================
 def product(arr):
     temp = 1
     for i in arr:
         temp = temp * i
     return temp
-
+# ======================================
+#  Function: Calculate GCD
+# ======================================
 def GreatestCommonDivisor(num,arr):
-    # Assume arr is sorted in an ascending order
+    if 0 in arr:
+        return 0
+    if 1 in arr:
+        return 1
+    # Sort arr in asceding order
+    arr.sort()
     # 1st element is the smallest
     tempFactorList = list()
     findFactors(arr[0],tempFactorList) # Factorize the 1st element
@@ -40,7 +52,7 @@ def GreatestCommonDivisor(num,arr):
     return product(tempFactorList)
 
 testList = list()
-findFactors(15,testList)
+findFactors(1,testList)
 print (testList)
 testList = checkFactors(7,testList)
 print (testList)
